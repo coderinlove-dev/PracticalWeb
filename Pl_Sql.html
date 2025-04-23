@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PL/SQL Practicals</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function copyCode(button) {
+      const code = button.parentElement.querySelector("pre.code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        button.textContent = "Copied!";
+        setTimeout(() => {
+          button.textContent = "Copy Code";
+        }, 1500);
+      });
+    }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+  <img src="logo.png" alt="Logo">
+  <div class="nav-buttons">
+    <a href="Pl_Sql.html" class="nav-link">PL/SQL</a>
+    <a href="computergraphics.html" class="nav-link">Computer Graphics</a>
+    <a href="webtechnology.html" class="nav-link">Web Technology</a>
+  </div>
+</nav>
+
+  <div class="button">
+    <a href="#practical1"><button>Sequential/Unconstrained Loop</button></a>
+    <a href="#practical2"><button>Sequences</button></a>
+    <a href="#practical3"><button>IF Then Else / Case</button></a>
+    <a href="#practical4"><button>While / For Loop</button></a>
+    <a href="#practical5"><button>GoTo / NULL</button></a>
+    <a href="#practical6"><button>Procedures In PL/SQL</button></a>
+    <a href="#practical7"><button>Triggers</button></a>
+    <a href="#practical8"><button>Implicit / Explicit Cursors</button></a>
+    <a href="#practical9"><button>Packages</button></a>
+  </div>
+
+  <!-- Practical 1 -->
+  <section id="practical1">
+    <h2>Practical 1 : Writing PL/SQL Blocks with basic programming constructs by including following: <br>a. Sequential Statements<br> b. unconstrained loop</h2>
+    <p><strong>Task:</strong> Write a PL/SQL block using sequential statements and an unconstrained loop.</p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre class="code">
+DECLARE
+  counter NUMBER := 1;
+  message VARCHAR2(50);
+BEGIN
+  message := 'Welcome to PL/SQL Programming';
+  DBMS_OUTPUT.PUT_LINE(message);
+  DBMS_OUTPUT.PUT_LINE('Now starting an unconstrained loop:');
+  LOOP
+    DBMS_OUTPUT.PUT_LINE('Counter value: ' || counter);
+    counter := counter + 1;
+    EXIT WHEN counter > 5;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Loop ended. Program complete.');
+END;
+</pre>
+    </div>
+  </section>
+  <hr>
+
+  <!-- Practical 2 -->
+  <section id="practical2">
+    <h2>Practical 2 : Sequences: <br>a. Creating simple Sequences with clauses like START WITH, INCREMENT BY, MAXVALUE, MINVALUE, CYCLE | NOCYCLE, CACHE | NOCACHE,ORDER | NOORECER. <br>b. Creating and using Sequences for tables.</h2>
+    
+    <h3>(a) Creating Simple Sequences</h3>
+    <p><strong>Instruction:</strong> You can create sequences using different clauses.</p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre class="code">
+CREATE SEQUENCE emp_seq
+  START WITH 1001
+  INCREMENT BY 1
+  MAXVALUE 1100
+  MINVALUE 1001
+  CYCLE
+  CACHE 10
+  ORDER;
+</pre>
+    </div>
+
+    <p><strong>Note:</strong> NOORDER and NOCACHE are default options.</p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre class="code">
+CREATE SEQUENCE test_seq
+  START WITH 1
+  INCREMENT BY 5
+  MAXVALUE 1000
+  NOCYCLE
+  NOCACHE
+  NOORDER;
+</pre>
+    </div>
+
+    <h3>(b) Creating and Using Sequences for Tables</h3>
+    <p><strong>Step 1:</strong> Create the <code>employees</code> table.</p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre class="code">
+CREATE TABLE employees (
+  emp_id NUMBER PRIMARY KEY,
+  name VARCHAR2(50),
+  department VARCHAR2(30)
+);
+</pre>
+    </div>
+
+    <p><strong>Step 2:</strong> Create a sequence to auto-generate <code>emp_id</code>.</p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre class="code">
+CREATE SEQUENCE emp_id_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+</pre>
+    </div>
+
+    <p><strong>Step 3:</strong> Insert records using the sequence.</p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre class="code">
+INSERT INTO employees (emp_id, name, department)
+VALUES (emp_id_seq.NEXTVAL, 'Darpan', 'HR');
+
+INSERT INTO employees (emp_id, name, department)
+VALUES (emp_id_seq.NEXTVAL, 'Bhavani', 'IT');
+</pre>
+    </div>
+
+    <p><strong>Step 4:</strong> View the data.</p>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      <pre class="code">
+SELECT * FROM employees;
+</pre>
+    </div>
+  </section>
+  <hr>
+
+<!-- Continuing from previous code -->
+<!-- Practical 3 -->
+<h2 id="practical3">Practical 3 : Writing PL/SQL Blocks with basic programming constructs by including following:<br> a. If...then...Else, IF...ELSIF..ELSE... END IF<br> b. Case statement</h2>
+<p>Using If...then...Else, IF...ELSIF..ELSE... END IF</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">DECLARE
+  marks NUMBER := 75;
+BEGIN
+  IF marks >= 40 THEN
+    DBMS_OUTPUT.PUT_LINE('Student Passed');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('Student Failed');
+  END IF;
+
+  IF marks >= 90 THEN
+    DBMS_OUTPUT.PUT_LINE('Grade: A');
+  ELSIF marks >= 75 THEN
+    DBMS_OUTPUT.PUT_LINE('Grade: B');
+  ELSIF marks >= 60 THEN
+    DBMS_OUTPUT.PUT_LINE('Grade: C');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('Grade: D');
+  END IF;
+END;
+</pre>
+</div>
+
+<p>Using CASE statement:</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">DECLARE
+  day_number NUMBER := 3;
+  day_name VARCHAR2(10);
+BEGIN
+  CASE day_number
+    WHEN 1 THEN day_name := 'Monday';
+    WHEN 2 THEN day_name := 'Tuesday';
+    WHEN 3 THEN day_name := 'Wednesday';
+    WHEN 4 THEN day_name := 'Thursday';
+    WHEN 5 THEN day_name := 'Friday';
+    WHEN 6 THEN day_name := 'Saturday';
+    WHEN 7 THEN day_name := 'Sunday';
+    ELSE day_name := 'Invalid Day';
+  END CASE;
+  DBMS_OUTPUT.PUT_LINE('Day is: ' || day_name);
+END;
+</pre>
+</div>
+<hr>
+
+<!-- Practical 4 -->
+<h2 id="practical4">Practical 4 : Writing PL/SQL Blocks with basic programming constructs for following Iterative Structure:<br> a. While-loop Statements <br>b. For-loop Statements.</h2>
+<p>This example shows how to use WHILE and FOR loops in PL/SQL.</p>
+<h3>WHILE Loop</h3>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">DECLARE
+  i NUMBER := 1;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('WHILE Loop from 1 to 5');
+  WHILE i <= 5 LOOP
+    DBMS_OUTPUT.PUT_LINE('Value of i: ' || i);
+    i := i + 1;
+  END LOOP;
+END;
+</pre>
+</div>
+
+<h3>FOR Loop</h3>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">BEGIN
+  DBMS_OUTPUT.PUT_LINE('FOR Loop from 1 to 5');
+  FOR i IN 1..5 LOOP
+    DBMS_OUTPUT.PUT_LINE('Value of i: ' || i);
+  END LOOP;
+END;
+</pre>
+</div>
+<hr>
+
+<!-- Practical 5 -->
+<h2 id="practical5">Practical 5 : Writing PL/SQL Blocks with basic programming constructs by including a GoTO to jump out of a loop and NULL as a statement inside IF.</h2>
+<p>Using GOTO and NULL statements in PL/SQL.</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">DECLARE
+  i NUMBER := 1;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Starting loop with GOTO and NULL example');
+  LOOP
+    DBMS_OUTPUT.PUT_LINE('Value of i: ' || i);
+    IF i = 2 THEN
+      NULL;
+    END IF;
+    IF i = 4 THEN
+      GOTO end_loop;
+    END IF;
+    i := i + 1;
+  END LOOP;
+
+  <<end_loop>>
+  DBMS_OUTPUT.PUT_LINE('Exited loop using GOTO');
+END;
+</pre>
+</div>
+
+<hr>
+
+<!-- Practical 6 -->
+<h2 id="practical6">Practical 6 : Writing Procedures in PL/SQL Block <br>a. Create an empty procedure, replace a procedure and call procedure<br> b. Define procedure to insert data</h2>
+<p><b><u>(A) Create, Replace, and Call a Procedure</b></u></p>
+<p>Step 1: Create an Empty Procedure</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE PROCEDURE hello_proc IS
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Hello! This is an empty procedure.');
+END;</pre>
+</div>
+
+
+<p>Step 2: Replace the Procedure (Update it)</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE PROCEDURE hello_proc IS
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Hello! This is the UPDATED procedure.');
+END;</pre>
+</div>
+
+<p>Step 3: Call the Procedure</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">BEGIN
+   hello_proc;
+END;</pre>
+</div>
+
+
+
+<p><b><u>(B) Define a Procedure to Insert Data into a Table</b></u></p>
+<p>Step 1: Create a Table</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE TABLE student (
+   roll_no NUMBER PRIMARY KEY,
+   name VARCHAR2(50),
+   course VARCHAR2(30)
+);</pre>
+</div>
+
+<p>Step 2: Create a Procedure to Insert Data</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE PROCEDURE insert_student (
+   p_roll_no IN NUMBER,
+   p_name IN VARCHAR2,
+   p_course IN VARCHAR2
+) IS
+BEGIN
+   INSERT INTO student (roll_no, name, course)
+   VALUES (p_roll_no, p_name, p_course);
+   
+   DBMS_OUTPUT.PUT_LINE('Student inserted successfully.');
+END;</pre>
+</div>
+
+<p>Step 3: Call the Procedure</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">BEGIN
+   insert_student(101, 'Rahul Sharma', 'BCA');
+END;</pre>
+</div>
+
+<hr>
+
+
+
+<!-- Practical 8 -->
+<h2 id="practical8">Practical 8 : Creating and working with Insert/Update/Delete Trigger using Before/After clause</h2>
+
+<p>Step 1: Create a Sample Table</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE TABLE employee (
+   emp_id NUMBER PRIMARY KEY,
+   name VARCHAR2(50),
+   salary NUMBER
+);</pre>
+</div>
+
+<p>Step 2: Create a Log Table to Track Changes</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE TABLE emp_log (
+   log_id NUMBER GENERATED ALWAYS AS IDENTITY,
+   action_type VARCHAR2(20),
+   emp_id NUMBER,
+   action_date DATE
+);</pre>
+</div>
+
+<p>(A) BEFORE INSERT Trigger</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE TRIGGER before_insert_trigger
+BEFORE INSERT ON employee
+FOR EACH ROW
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Before inserting employee ID: ' || :NEW.emp_id);
+END;</pre>
+</div>
+
+
+<p>(B) AFTER UPDATE Trigger</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE TRIGGER after_update_trigger
+AFTER UPDATE ON employee
+FOR EACH ROW
+BEGIN
+   INSERT INTO emp_log (action_type, emp_id, action_date)
+   VALUES ('UPDATE', :OLD.emp_id, SYSDATE);
+
+   DBMS_OUTPUT.PUT_LINE('Updated employee ID: ' || :OLD.emp_id);
+END;</pre>
+</div>
+
+<p>(C) BEFORE DELETE Trigger</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE TRIGGER before_delete_trigger
+BEFORE DELETE ON employee
+FOR EACH ROW
+BEGIN
+   INSERT INTO emp_log (action_type, emp_id, action_date)
+   VALUES ('DELETE', :OLD.emp_id, SYSDATE);
+
+   DBMS_OUTPUT.PUT_LINE('Deleted employee ID: ' || :OLD.emp_id);
+END;</pre>
+</div>
+
+<p>Testing the Triggers</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">-- Insert
+INSERT INTO employee (emp_id, name, salary) VALUES (1, 'Riya Mehta', 30000);
+
+-- Update
+UPDATE employee SET salary = 35000 WHERE emp_id = 1;
+
+-- Delete
+DELETE FROM employee WHERE emp_id = 1;</pre>
+</div>
+<hr>
+
+
+
+
+<!-- Practical 9 -->
+<h2 id="practical9">Practical 9 : Write an Implicit and explicit cursor to complete the task</h2>
+<p>Using implicit cursor:</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">BEGIN
+  INSERT INTO employee (emp_id, name, salary)
+  VALUES (2, 'Amit Shah', 28000);
+  DBMS_OUTPUT.PUT_LINE('Rows Inserted: ' || SQL%ROWCOUNT);
+END;</pre>
+</div>
+
+<p>Using explicit cursor:</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">DECLARE
+   CURSOR emp_cursor IS
+      SELECT emp_id, name, salary FROM employee;
+
+   v_id employee.emp_id%TYPE;
+   v_name employee.name%TYPE;
+   v_salary employee.salary%TYPE;
+BEGIN
+   OPEN emp_cursor;
+
+   LOOP
+      FETCH emp_cursor INTO v_id, v_name, v_salary;
+      EXIT WHEN emp_cursor%NOTFOUND;
+
+      DBMS_OUTPUT.PUT_LINE('ID: ' || v_id || ', Name: ' || v_name || ', Salary: ' || v_salary);
+   END LOOP;
+
+   CLOSE emp_cursor;
+END;</pre>
+</div>
+<hr>
+
+
+<!-- Practical 10 -->
+<h2 id="practical10">Practical 10 : Create packages and use it in SQL black to complete the task. Consider the customer table(declare package and package body)</h2>
+<p>Step 1: Create the customer Table (if not already created)</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE TABLE customer (
+   cust_id NUMBER PRIMARY KEY,
+   cust_name VARCHAR2(50),
+   city VARCHAR2(30)
+);</pre>
+</div>
+
+
+<p>Step 2: Create the Package Specification</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE PACKAGE customer_pkg AS
+   PROCEDURE insert_customer(p_id NUMBER, p_name VARCHAR2, p_city VARCHAR2);
+   PROCEDURE display_customers;
+END customer_pkg;</pre>
+</div>
+
+<p>Step 3: Create the Package Body</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">CREATE OR REPLACE PACKAGE BODY customer_pkg AS
+
+   -- Insert Procedure
+   PROCEDURE insert_customer(p_id NUMBER, p_name VARCHAR2, p_city VARCHAR2) IS
+   BEGIN
+      INSERT INTO customer (cust_id, cust_name, city)
+      VALUES (p_id, p_name, p_city);
+      DBMS_OUTPUT.PUT_LINE('Customer inserted successfully.');
+   END;
+
+   -- Display Procedure
+   PROCEDURE display_customers IS
+      CURSOR c1 IS SELECT * FROM customer;
+      v_id customer.cust_id%TYPE;
+      v_name customer.cust_name%TYPE;
+      v_city customer.city%TYPE;
+   BEGIN
+      OPEN c1;
+      LOOP
+         FETCH c1 INTO v_id, v_name, v_city;
+         EXIT WHEN c1%NOTFOUND;
+         DBMS_OUTPUT.PUT_LINE('ID: ' || v_id || ', Name: ' || v_name || ', City: ' || v_city);
+      END LOOP;
+      CLOSE c1;
+   END;
+
+END customer_pkg;</pre>
+</div>
+
+<p>Step 4: Use the Package in a PL/SQL Block</p>
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+  <pre class="code">BEGIN
+   -- Call insert procedure from package
+   customer_pkg.insert_customer(101, 'Sonal Patil', 'Pune');
+   customer_pkg.insert_customer(102, 'Aarav Mehta', 'Mumbai');
+
+   -- Call display procedure from package
+   customer_pkg.display_customers;
+END;</pre>
+</div>
+<hr>
+
+
+
+</body>
+</html>

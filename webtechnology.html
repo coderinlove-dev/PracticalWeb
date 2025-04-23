@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web-Technology</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+  <img src="logo.png" alt="Logo">
+  <div class="nav-buttons">
+    <a href="Pl_Sql.html" class="nav-link">PL/SQL</a>
+    <a href="computergraphics.html" class="nav-link">Computer Graphics</a>
+    <a href="webtechnology.html" class="nav-link">Web Technology</a>
+  </div>
+</nav>
+
+  <div class="button">
+    <a href="#fibonacci"><button>Fibonacci</button></a>
+    <a href="#script"><button>Script/Noscript</button></a>
+    <a href="#placing"><button>Placing Js</button></a>
+    <a href="#variables"><button>Variables</button></a><br><br>
+    <a href="#loop"><button>Loop/Condition</button></a>
+    <a href="#function"><button>Fundamental_Function</button></a>
+    <a href="#operator"><button>Operator Js</button></a><br><br>
+    <a href="#array"><button>Array</button></a>
+    <a href="#date"><button>Array Date/Time</button></a>
+    <a href="#array_variables"><button>Array Variables</button></a>
+  </div>
+
+<!-- Repeat for each code block -->
+
+<h2 id="fibonacci">Explain Fibonacci Series in Javascript</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    var i = 0, a = 0, b = 1, t = 0;
+    document.write(a);
+    document.write("&lt;br&gt;" + b);
+    for (i = 0; i &lt;= 10; i++) {
+      t = a + b;
+      document.write("&lt;br&gt;" + t);
+      a = b;
+      b = t;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="script">Write a Program Scripting And Non-Scripting</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    document.write("Hello this is Scripting In Js on Html page");
+  &lt;/script&gt;
+  &lt;noscript&gt;
+    Please Enable Scripting On The browser
+  &lt;/noscript&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="placing">Write a Program on placing javascript on webpage</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    document.write("Hello World");
+    document.write("Javascript In Html");
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="variable">Write a Program of javascript using Variable</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    let name = "Darpan";
+    document.write("Hello " + name);
+    var a = 10, b = 20, c = 0;
+    c = a + b;
+    document.write("&lt;br&gt;A + B =" + c);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="loop">Write a Program about loop and condition in Javascript</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    var i;
+    document.write("Even Number From 1 To 10");
+    for (i = 1; i &lt;= 10; i++) {
+      if (i % 2 == 0) {
+        document.write("&lt;br&gt;" + i);
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="function">Write a Program Fundamental using Function</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script&gt;
+    function greetings() {
+      document.write("Hello");
+      document.write("&lt;br&gt; Have A Nice Day");
+    }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    greetings();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="operator">Write a Program In Javascript Using Operator</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    var a = prompt("Enter the 1st Number : ");
+    let num1 = Number(a);
+    var b = prompt("Enter the 2nd Number : ");
+    let num2 = Number(b);
+    document.write("Addition Is " + (num1 + num2));
+    document.write("&lt;br&gt;Subtraction Is " + (num1 - num2));
+    document.write("&lt;br&gt;Multiplication Is " + (num1 * num2));
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="array">Explain Array In JavaScript</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Array In JavaScript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    var i;
+    let array1 = [1, "Om", "Apple"];
+    for (i = 0; i &lt; 3; i++) {
+      document.write("&lt;br&gt;" + array1[i]);
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="date">Explain Associative Array With Date And Time</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Associative Array in Javascript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    let dateinfo = {
+      "day": "Wednesday",
+      "date": "17",
+      "month": "April",
+      "year": "2025",
+      "time": "12:00 pm"
+    };
+    document.write("Time :" + dateinfo.time);
+    document.write("&lt;br&gt;Today Is  :" + dateinfo.day + "," + dateinfo.date + "," + dateinfo.month + "," + dateinfo.year);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2 id="array_variables">Explain Associative Array With Variables</h2>
+<div class="code-container">
+  <button class="copy-btn">Copy</button>
+  <pre class="code">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Associative Array in Javascript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script language="javascript"&gt;
+    let name = "Arya";
+    var age = "23";
+    let city = "Mumbai";
+    let person = {
+      "personname": name,
+      "personage": age,
+      "personcity": city
+    };
+    document.write("Name : " + person.personname);
+    document.write("&lt;br&gt;Age : " + person.personage);
+    document.write("&lt;br&gt;City : " + person.personcity);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => (btn.textContent = 'Copy'), 2000);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

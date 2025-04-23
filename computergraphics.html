@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Computer Graphics</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+  <img src="logo.png" alt="Logo">
+  <div class="nav-buttons">
+    <a href="Pl_Sql.html" class="nav-link">PL/SQL</a>
+    <a href="computergraphics.html" class="nav-link">Computer Graphics</a>
+    <a href="webtechnology.html" class="nav-link">Web Technology</a>
+  </div>
+</nav>
+
+
+  <div class="button">
+    <a href="#coordinate"><button>Co-Ordinate</button></a>
+    <a href="#arc"><button>Arc</button></a>
+    <a href="#circle"><button>Circle</button></a>
+    <a href="#square"><button>Square</button></a>
+    <br><br>
+    <a href="#rainbow"><button>Rainbow</button></a>
+    <a href="#theme"><button>Themed_point Circle</button></a>
+    <a href="#clock"><button>Clock</button></a>
+    <br><br>
+    <a href="#concentric"><button>Concentric Circles</button></a>
+    <a href="#dda"><button>DDA Algorithm</button></a>
+    <a href="#ellipse"><button>Ellipse</button></a>
+  </div>
+
+  <div class="content">
+    <div class="code-block" id="coordinate">
+      <h2>Write A Program to Draw the Co-Ordinate Axis At The Center Of Screen</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  int x=0,y=0,yhalf,xhalf,ymax,xmax;
+  ymax=getmaxy();
+  xmax=getmaxx();
+  yhalf=ymax/2;
+  xhalf=xmax/2;
+  line(x,yhalf,xmax,yhalf);
+  line(xhalf,y,xhalf,ymax);
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="arc">
+      <h2>Write A Program To Draw an Arc</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  setcolor(BLUE);
+  arc(400,20,-90,90,50);
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="circle">
+      <h2>Write A Program To Draw A Circle in Turbo C</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  setcolor(WHITE);
+  circle(200,300,50);
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="square">
+      <h2>Write A Program to Draw a Square</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  setcolor(BLUE);
+  rectangle(100,100,300,300);
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="rainbow">
+      <h2>Write A Program To Create a Rainbow</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+#include&lt;dos.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  setbkcolor(WHITE);
+  int x=getmaxx()/2;
+  int y=getmaxy()-50;
+  int radius=100;
+  int colors[]={RED,LIGHTRED,YELLOW,GREEN,BLUE,CYAN};
+  int n=sizeof(colors)/sizeof(colors[0]);
+  for(int i=0;i&lt;n;i++)
+  {
+    setcolor(colors[i]);
+    setfillstyle(SOLID_FILL,colors[i]);
+    pieslice(x,y,0,180,radius-i*15);
+    delay(100);
+  }
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="theme">
+      <h2>Develop A Program For Themed Point Circle Drawing Algorithm On C.G</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+#include&lt;iostream.h&gt;
+#include&lt;dos.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  int xc,yc,r;
+  cout&lt;&lt;"Enter The Center Points Of Circle : ";
+  cin&gt;&gt;xc;
+  cin&gt;&gt;yc;
+  cout&lt;&lt;"Enter The Radius : ";
+  cin&gt;&gt;r;
+  int x=0;
+  int y=r;
+  int p=1-r;
+  while(x&lt;y)
+  {
+    if(p&lt;0)
+    {
+      x++;
+      p=p+2*x+1;
+    }
+    else
+    {
+      x++;
+      y--;
+      p=p+2*x+1-2*y;
+    }
+    putpixel(xc+x,yc-y,RED);
+    putpixel(xc-x,yc-y,RED);
+    putpixel(xc+x,yc+y,RED);
+    putpixel(xc-x,yc+y,RED);
+    putpixel(xc+y,yc+x,RED);
+    putpixel(xc-y,yc+x,RED);
+    putpixel(xc+y,yc-x,RED);
+    putpixel(xc-y,yc-x,RED);
+  }
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="clock">
+      <h2>Write A Program To Create a Clock</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+#include&lt;dos.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  setcolor(WHITE);
+  circle(310,230,130);
+  line(310,230,310,150);
+  line(310,150,300,160);
+  line(310,150,320,160);
+  line(310,230,420,230);
+  line(420,230,410,220);
+  line(420,230,410,240);
+  circle(310,230,5);
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="concentric">
+      <h2>Write A Program To Draw Concentric Circles</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+#include&lt;dos.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  int x=300, y=200, r=50;
+  for(int i=0;i&lt;=100;i+=20)
+  {
+    circle(x,y,r+i);
+    delay(100);
+  }
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="dda">
+      <h2>Write A Program For DDA Line Algorithm</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;graphics.h&gt;
+#include&lt;dos.h&gt;
+#include&lt;iostream.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  int x1,y1,x2,y2,dx,dy,x,y,d;
+  cout&lt;&lt;"Enter The 1st Co-ordinates: ";
+  cin&gt;&gt;x1&gt;&gt;y1;
+  cout&lt;&lt;"Enter The 2nd Co-ordinates: ";
+  cin&gt;&gt;x2&gt;&gt;y2;
+  dx = x2 - x1;
+  dy = y2 - y1;
+  d = 2*dy - dx;
+  x = x1;
+  y = y1;
+  putpixel(x,y,RED);
+  while(x&lt;=x2)
+  {
+    if(d&gt;0)
+    {
+      y++;
+      d = d + 2*dy - 2*dx;
+    }
+    else
+    {
+      d = d + 2*dy;
+    }
+    x++;
+    putpixel(x,y,RED);
+  }
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="code-block" id="ellipse">
+      <h2>Write A Program To Draw an Ellipse</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre class="code">#include&lt;conio.h&gt;
+#include&lt;dos.h&gt;
+#include&lt;graphics.h&gt;
+void main()
+{
+  int gd=DETECT,gm;
+  initgraph(&amp;gd,&amp;gm,"C:\\TC\\BGI");
+  clrscr();
+  setcolor(RED);
+  ellipse(200,110,0,360,10,80);
+  getch();
+  closegraph();
+}
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const code = this.nextElementSibling.innerText; // Get the code inside the <pre> tag
+        navigator.clipboard.writeText(code).then(() => {
+          this.innerText = 'Copied!';
+          setTimeout(() => this.innerText = 'Copy', 2000);
+        }).catch(err => console.error('Error copying text: ', err));
+      });
+    });
+  </script>
+</body>
+</html>

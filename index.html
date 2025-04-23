@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #e6c28b;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1.5rem;
+      background-color: #1a1a1a;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    nav img {
+      height: 50px;
+      width: 190px;
+    }
+
+    nav button {
+      margin-left: 15px;
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: transparent;
+      border: 2px solid #e6c28b;
+      color: #e6c28b;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav button:hover {
+      background-color: #e6c28b;
+      color: #000;
+    }
+
+    .main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 100px;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .main h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5rem;
+      line-height: 1.5;
+      color: #e6c28b;
+      margin: 0px;
+      white-space: nowrap;
+    }
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 50%;
+    }
+
+    .main img {
+      height: 300px;
+      max-width: 80%;
+      object-fit: contain;
+    }
+
+.nav-link {
+  margin-left: 15px;
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: transparent;
+  border: 2px solid #e6c28b;
+  color: #e6c28b;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #e6c28b;
+  color: #000;
+}
+
+
+    @media (max-width: 1024px) {
+      .main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 30px;
+      }
+
+      .text-container {
+        max-width: 100%;
+      }
+
+      .main h1 {
+        font-size: 3rem;
+        white-space: normal;
+      }
+
+      .main img {
+        margin-top: 30px;
+        height: 300px;
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .main img {
+      height: 460px;
+      max-width: 100%;
+      object-fit: contain;
+      animation: popIn 1s ease-out forwards;
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 3px #e6c28b, 0 0 5px #e6c28b;
+      }
+      50% {
+        text-shadow: 0 0 5px #e6c28b, 0 0 10px #bfa173;
+      }
+    }
+
+    /* Apply glow just twice for both lines */
+    .main h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 5.5rem;
+      line-height: 1.5;
+      color: #e6c28b;
+      margin: 0;
+      margin-left: 100px;
+      white-space: nowrap;
+      animation: glow 2.5s ease-in-out 2; /* plays twice then stops */
+    }
+
+    /* Optional: Ensure both h1 elements glow the same */
+    .main h1:nth-child(1),
+    .main h1:nth-child(2) {
+      animation: glow 2.5s ease-in-out 2; /* both glow the same way */
+    }
+
+  </style>
+</head>
+<body>
+ <nav>
+  <img src="logo.png" alt="Logo">
+  <div>
+    <a href="Pl_Sql.html" class="nav-link">PL/SQL</a>
+    <a href="computergraphics.html" class="nav-link">Computer Graphics</a>
+    <a href="webtechnology.html" class="nav-link">Web Technology</a>
+  </div>
+</nav>
+
+
+  <main class="main">
+    <div class="text-container">
+      <h1>Chill Kar Jaani...</h1>
+      <h1>Naa le ❤️ par Jaani</h1>
+    </div>
+    <div>
+      <img src="1.png" alt="Cool Bear with Shades">
+    </div>
+  </main>
+</body>
+</html>
